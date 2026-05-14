@@ -7,7 +7,7 @@ type CalculatorTaxesProps = {
   taxData: TaxData
 }
 
-const CalculatorTaxes: FC<CalculatorTaxesProps> = ({ taxData: { bands, total, grossSalary } }) => (
+const CalculatorTaxes: FC<CalculatorTaxesProps> = ({ taxData: { bands, total, netSalary } }) => (
   <table className={s.calculatorTaxes}>
     <thead>
       <tr>
@@ -36,10 +36,10 @@ const CalculatorTaxes: FC<CalculatorTaxesProps> = ({ taxData: { bands, total, gr
       </tr>
       <tr>
         <td colSpan={3}>
-          <b>Gross Salary</b>
+          <b>Net Salary</b>
         </td>
         <td>
-          <b>{formatToCurrency(grossSalary)}</b>
+          <b>{formatToCurrency(netSalary)}</b>
         </td>
       </tr>
     </tbody>
