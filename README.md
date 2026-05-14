@@ -6,7 +6,7 @@ Git: https://git-scm.com/install/
 
 # Steps to run
 
-Clone the repository: `git clone https://github.com/ChamiduJ/retail-calculator.git`
+Clone the repository: `git clone https://github.com/ChamiduJ/tax-calculator.git`
 
 Run: `npm install`
 
