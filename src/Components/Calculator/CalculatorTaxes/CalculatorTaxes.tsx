@@ -1,12 +1,6 @@
 import type { FC } from 'react'
 import s from './styles.module.scss'
-
-type TaxBand = {
-  bandStart: number
-  bandFinish: number | null
-  taxRate: number
-  taxCollected: number
-}
+import type { TaxBand } from '../calculator.types'
 
 type CalculatorTaxesProps = {
   taxData: {

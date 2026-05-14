@@ -1,9 +1,6 @@
 import { useState, type FC, type SubmitEvent } from 'react'
 import s from './styles.module.scss'
-
-type CalculatorFormData = {
-  salary: number
-}
+import type { CalculatorFormData } from '../calculator.types'
 
 type CalculatorFormProps = {
   onSubmit: (data: CalculatorFormData) => void
