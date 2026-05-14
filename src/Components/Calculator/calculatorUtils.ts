@@ -12,7 +12,7 @@ export const calculateTaxBands = (salary: number, orderedTaxBands: TaxBandInput[
       bandStart,
       bandEnd,
       taxRatePercentage: taxRate * 100,
-      taxCollected: taxableInBand * taxRate,
+      taxCollected: roundToCurrency(taxableInBand * taxRate),
     })
   }
 
@@ -21,6 +21,10 @@ export const calculateTaxBands = (salary: number, orderedTaxBands: TaxBandInput[
 
 export const calculate = (salary: number, orderedTaxBands: TaxBandInput[]): TaxData => {
   const bands = calculateTaxBands(salary, orderedTaxBands)
-  const total = bands.reduce((sum, band) => sum + band.taxCollected, 0)
-  return { bands, total }
+  const total = roundToCurrency(bands.reduce((sum, band) => sum + band.taxCollected, 0))
+  return { bands, total, grossSalary: salary }
 }
+
+export const roundToCurrency = (amount: number) => Math.round(amount * 100) / 100
+
+export const formatToCurrency = (amount: number) => amount.toFixed(2)

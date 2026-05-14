@@ -1,15 +1,13 @@
 import type { FC } from 'react'
 import s from './styles.module.scss'
-import type { TaxBand } from '../calculator.types'
+import type { TaxData } from '../calculator.types'
+import { formatToCurrency } from '../calculatorUtils'
 
 type CalculatorTaxesProps = {
-  taxData: {
-    bands: TaxBand[]
-    total: number
-  }
+  taxData: TaxData
 }
 
-const CalculatorTaxes: FC<CalculatorTaxesProps> = ({ taxData: { bands, total } }) => (
+const CalculatorTaxes: FC<CalculatorTaxesProps> = ({ taxData: { bands, total, grossSalary } }) => (
   <table className={s.calculatorTaxes}>
     <thead>
       <tr>
@@ -22,18 +20,26 @@ const CalculatorTaxes: FC<CalculatorTaxesProps> = ({ taxData: { bands, total } }
     <tbody>
       {bands.map((band, index) => (
         <tr key={index}>
-          <td>{band.bandStart}</td>
-          <td>{band.bandEnd}</td>
-          <td>{band.taxRatePercentage}%</td>
-          <td>{band.taxCollected}</td>
+          <td>{formatToCurrency(band.bandStart)}</td>
+          <td>{band.bandEnd !== null ? formatToCurrency(band.bandEnd) : '—'}</td>
+          <td>{formatToCurrency(band.taxRatePercentage)}%</td>
+          <td>{formatToCurrency(band.taxCollected)}</td>
         </tr>
       ))}
       <tr>
         <td colSpan={3}>
-          <b>Total</b>
+          <b>Total tax</b>
         </td>
         <td>
-          <b>{total}</b>
+          <b>{formatToCurrency(total)}</b>
+        </td>
+      </tr>
+      <tr>
+        <td colSpan={3}>
+          <b>Gross Salary</b>
+        </td>
+        <td>
+          <b>{formatToCurrency(grossSalary)}</b>
         </td>
       </tr>
     </tbody>

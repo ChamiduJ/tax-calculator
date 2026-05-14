@@ -14,6 +14,7 @@ export type TaxBand = {
 export type TaxData = {
   bands: TaxBand[]
   total: number
+  grossSalary: number
 }
 
 export type CalculatorFormData = {
