@@ -23,8 +23,8 @@ const CalculatorTaxes: FC<CalculatorTaxesProps> = ({ taxData: { bands, total } }
       {bands.map((band, index) => (
         <tr key={index}>
           <td>{band.bandStart}</td>
-          <td>{band.bandFinish}</td>
-          <td>{band.taxRate}%</td>
+          <td>{band.bandEnd}</td>
+          <td>{band.taxRatePercentage}%</td>
           <td>{band.taxCollected}</td>
         </tr>
       ))}
