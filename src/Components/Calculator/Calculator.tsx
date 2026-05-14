@@ -1,21 +1,23 @@
 import { useState } from 'react'
+import axios from 'axios'
 import CalculatorForm from './CalculatorForm/CalculatorForm'
 import CalculatorTaxes from './CalculatorTaxes/CalculatorTaxes'
 import { calculate } from './calculatorUtils'
 import type { TaxBandInput, TaxData } from './calculator.types'
 
-const mockBands: TaxBandInput[] = [
-  { bandStart: 0,     bandEnd: 14000, taxRate: 0.1150 },
-  { bandStart: 14000, bandEnd: 48000, taxRate: 0.2100 },
-  { bandStart: 48000, bandEnd: 70000, taxRate: 0.3150 },
-  { bandStart: 70000, bandEnd: null,  taxRate: 0.3550 },
-]
-
 const Calculator = () => {
   const [taxData, setTaxData] = useState<TaxData | null>(null)
 
-  const handleSubmit = ({ salary }: { salary: number }) => {
-    setTaxData(calculate(salary, mockBands))
+  const handleSubmit = async ({ salary }: { salary: number }) => {
+    /**
+     * Dev comments
+     * Retrieving tax bands on each click ensures up-to-date rates.
+     * Implementing a frontend cache can improve performance, but rates will not update until the application is reloaded.
+     * Implementing a cache with proper invalidation can improve performance while keeping rates up to date.
+     */
+
+    const { data: taxBands } = await axios.get<TaxBandInput[]>('/income-tax-bands.json')
+    setTaxData(calculate(salary, taxBands))
   }
 
   return (
