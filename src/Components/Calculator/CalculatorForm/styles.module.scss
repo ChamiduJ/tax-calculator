@@ -1,0 +1,25 @@
+.calculatorForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    input {
+      width: 200px;
+      padding: 5px;
+      border: solid 1px gray;
+      box-sizing: border-box;
+      text-align: right;
+    }
+  }
+
+  button {
+    border: solid 1px gray;
+    padding: 5px;
+  }
+}

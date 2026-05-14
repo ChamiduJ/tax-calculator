@@ -3,7 +3,7 @@ import CalculatorTaxes from './CalculatorTaxes/CalculatorTaxes'
 
 const Calculator = () => (
   <div>
-    <CalculatorForm />
+    <CalculatorForm onSubmit={() => {}} />
     <CalculatorTaxes />
   </div>
 )
